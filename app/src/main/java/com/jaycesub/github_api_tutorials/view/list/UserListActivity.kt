@@ -3,8 +3,12 @@ package com.jaycesub.github_api_tutorials.view.list
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.jaycesub.github_api_tutorials.R
 import com.jaycesub.github_api_tutorials.model.User
 import com.jaycesub.github_api_tutorials.view.adapter.UserListAdapter
@@ -53,6 +57,13 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
         button_search.setOnClickListener {
             presenter.search()
         }
+
+        adapter.setOnItemClickListener(object: UserListAdapter.OnItemClickListener {
+            override fun onClick(view: View?, position: Int) {
+                // TODO : show user details
+            }
+
+        })
     }
 
     override fun showUserList(user: User) {
