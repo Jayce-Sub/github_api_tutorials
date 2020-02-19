@@ -57,7 +57,7 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
 
     override fun showUserList(user: User) {
         textView_totalCount.text = String.format("total count : %d", user.total_count)
-        // TODO : show User List
+        adapter.setItemList(user.items)
     }
 
     override fun onDestroy() {
