@@ -2,7 +2,9 @@ package com.jaycesub.github_api_tutorials.view.user
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.jaycesub.github_api_tutorials.Constants.INTENT_LOGIN
 import com.jaycesub.github_api_tutorials.R
 import com.jaycesub.github_api_tutorials.model.User
@@ -40,8 +42,22 @@ class UserActivity : AppCompatActivity(), UserContract.View {
             // Avatar
             Glide.with(this)
                 .load(user.avatar_url)
+                .apply(getRequestOptions())
                 .into(imageView_avatar)
         }
+    }
 
+    private fun getRequestOptions(): RequestOptions {
+
+        val circleProgressBar = CircularProgressDrawable(this).apply {
+            strokeWidth = 5f
+            centerRadius = 30f
+            start()
+        }
+
+        return RequestOptions()
+            .placeholder(circleProgressBar)
+            .skipMemoryCache(true)
+            .fitCenter()
     }
 }

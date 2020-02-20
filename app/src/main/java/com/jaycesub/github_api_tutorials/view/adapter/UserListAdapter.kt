@@ -1,11 +1,14 @@
 package com.jaycesub.github_api_tutorials.view.adapter
 
+import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.jaycesub.github_api_tutorials.R
 import com.jaycesub.github_api_tutorials.model.Items
 import kotlinx.android.synthetic.main.item_userlist.view.*
@@ -42,9 +45,25 @@ class UserListAdapter(private var itemList: List<Items>) : RecyclerView.Adapter<
         fun bind(position: Int) {
             val item = itemList[position]
             view.textView_id.text = item.login
+
             Glide.with(view)
                 .load(item.avatar_url)
+                .apply(getRequestOptions())
                 .into(view.imageView_avatar)
+        }
+
+        private fun getRequestOptions(): RequestOptions {
+
+            val circleProgressBar = CircularProgressDrawable(view.context).apply {
+                strokeWidth = 5f
+                centerRadius = 30f
+                start()
+            }
+
+            return RequestOptions()
+                .placeholder(circleProgressBar)
+                .skipMemoryCache(true)
+                .fitCenter()
         }
 
         override fun onClick(v: View?) {
