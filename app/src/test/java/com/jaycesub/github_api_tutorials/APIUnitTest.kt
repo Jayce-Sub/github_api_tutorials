@@ -12,7 +12,21 @@ class APIUnitTest {
         val countDown = CountDownLatch(1)
 
         val q = "jjs"
-        GithubService.service.getUser(q)
+        GithubService.service.getUserList(q)
+            .subscribeOn(Schedulers.io())
+            .subscribe {
+                countDown.countDown()
+            }
+
+        countDown.await()
+    }
+
+    @Test
+    fun getUser() {
+        val countDown = CountDownLatch(1)
+
+        val userName = "jayce-sub"
+        GithubService.service.getUserInfo(userName)
             .subscribeOn(Schedulers.io())
             .subscribe {
                 countDown.countDown()

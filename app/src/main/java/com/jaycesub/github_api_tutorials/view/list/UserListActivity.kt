@@ -1,5 +1,6 @@
 package com.jaycesub.github_api_tutorials.view.list
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -9,9 +10,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.jaycesub.github_api_tutorials.Constants.INTENT_LOGIN
 import com.jaycesub.github_api_tutorials.R
-import com.jaycesub.github_api_tutorials.model.User
+import com.jaycesub.github_api_tutorials.model.Users
 import com.jaycesub.github_api_tutorials.view.adapter.UserListAdapter
+import com.jaycesub.github_api_tutorials.view.user.UserActivity
 import kotlinx.android.synthetic.main.activity_userlist.*
 
 class UserListActivity : AppCompatActivity(), UserListContract.View {
@@ -60,15 +63,21 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
 
         adapter.setOnItemClickListener(object: UserListAdapter.OnItemClickListener {
             override fun onClick(view: View?, position: Int) {
-                // TODO : show user details
+                presenter.requestUserInfo(position)
             }
 
         })
     }
 
-    override fun showUserList(user: User) {
-        textView_totalCount.text = String.format("total count : %d", user.total_count)
-        adapter.setItemList(user.items)
+    override fun showUserList(users: Users) {
+        textView_totalCount.text = String.format("total count : %d", users.total_count)
+        adapter.setItemList(users.items)
+    }
+
+    override fun showUserInfo(login: String) {
+        val intent = Intent(this, UserActivity::class.java)
+        intent.putExtra(INTENT_LOGIN, login)
+        startActivity(intent)
     }
 
     override fun onDestroy() {

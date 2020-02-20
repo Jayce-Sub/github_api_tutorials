@@ -3,12 +3,7 @@ package com.jaycesub.github_api_tutorials.model
 import com.google.gson.annotations.SerializedName
 
 data class User(
-    @SerializedName("total_count") var total_count: Int,
-    @SerializedName("incomplete_results") var incomplete_results: Boolean,
-    @SerializedName("items") var items: List<Items>
-)
 
-data class Items(
     @SerializedName("login") val login: String,
     @SerializedName("id") var id: Int,
     @SerializedName("node_id") val node_id: String,
@@ -17,10 +12,27 @@ data class Items(
     @SerializedName("url") val url: String,
     @SerializedName("html_url") val html_url: String,
     @SerializedName("followers_url") val followers_url: String,
+    @SerializedName("following_url") val following_url: String,
+    @SerializedName("gists_url") val gists_url: String,
+    @SerializedName("starred_url") val starred_url: String,
     @SerializedName("subscriptions_url") val subscriptions_url: String,
     @SerializedName("organizations_url") val organizations_url: String,
     @SerializedName("repos_url") val repos_url: String,
+    @SerializedName("events_url") val events_url: String,
     @SerializedName("received_events_url") val received_events_url: String,
     @SerializedName("type") val type: String,
-    @SerializedName("score") val score: Double
+    @SerializedName("site_admin") var site_admin: Boolean,
+    @SerializedName("name") val name: String,
+    @SerializedName("company") val company: String,
+    @SerializedName("blog") val blog: String,
+    @SerializedName("location") val location: String,
+    @SerializedName("email") val email: String,
+    @SerializedName("hireable") var hireable: Boolean,
+    @SerializedName("bio") val bio: String,
+    @SerializedName("public_repos") var public_repos: Int,
+    @SerializedName("public_gists") var public_gists: Int,
+    @SerializedName("followers") var followers: Int,
+    @SerializedName("following") var following: Int,
+    @SerializedName("created_at") val created_at: String,
+    @SerializedName("updated_at") val updated_at: String
 )
