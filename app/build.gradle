@@ -34,8 +34,10 @@ dependencies {
 
     // Test Implementation
     testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.2.0'
 
     def okHttp_version = "3.10.0"
     implementation "com.squareup.okhttp3:okhttp:${okHttp_version}"
