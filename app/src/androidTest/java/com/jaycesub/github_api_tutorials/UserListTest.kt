@@ -36,7 +36,7 @@ class UserListTest {
     fun insertUserNameTest() {
         val text = "jjs"
         userListActivity.launchActivity(Intent())
-        onView(withId(R.id.editText_search))
+        onView(withId(R.id.autoCompleteTextView_search))
             .perform(typeText(text), closeSoftKeyboard())
         onView(withId(R.id.button_search))
             .perform(click())

@@ -41,7 +41,7 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
     }
 
     private fun initListener() {
-        editText_search.addTextChangedListener(object: TextWatcher {
+        autoCompleteTextView_search.addTextChangedListener(object: TextWatcher {
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 presenter.q = s.toString()
