@@ -37,6 +37,25 @@ class UserListPresenter(private val view: UserListContract.View) : BasePresenter
             ))
     }
 
+    override fun requestPreview() {
+        if(q.isBlank()) {
+            return
+        } // else
+
+        compositeDisposable.add(GithubService.service.getUserList(q)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe(
+                {
+                    userList = it
+                    view.showPreview(userList)
+                }, {
+                    Log.w(javaClass.simpleName, it)
+                }
+            ))
+
+    }
+
     override fun requestUserInfo(position: Int) {
         if(!::userList.isInitialized) {
             return

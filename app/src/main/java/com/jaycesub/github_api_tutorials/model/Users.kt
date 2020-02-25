@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Users(
     @SerializedName("total_count") var total_count: Int,
     @SerializedName("incomplete_results") var incomplete_results: Boolean,
-    @SerializedName("items") var items: List<Items>
+    @SerializedName("items") var items: ArrayList<Items>
 )
 
 data class Items(
