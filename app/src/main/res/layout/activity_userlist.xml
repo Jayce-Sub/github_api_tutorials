@@ -4,19 +4,27 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_userList"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="?attr/colorPrimary"/>
 
     <AutoCompleteTextView
         android:id="@+id/autoCompleteTextView_search"
         android:hint="enter the name"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:layout_toStartOf="@id/button_search"/>
+        android:layout_toStartOf="@id/button_search"
+        android:layout_below="@id/toolbar_userList"/>
 
     <Button
         android:id="@+id/button_search"
         android:layout_width="56dp"
         android:layout_height="56dp"
         android:layout_alignParentEnd="true"
+        android:layout_below="@id/toolbar_userList"
         android:padding="10dp"/>
 
     <TextView

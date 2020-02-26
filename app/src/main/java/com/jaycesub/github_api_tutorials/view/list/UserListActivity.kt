@@ -7,6 +7,7 @@ import android.os.Message
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.Menu
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -43,6 +44,11 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
         initListener()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_userlist, menu)
+        return true
+    }
+
     private fun initHandler() {
         handler = Handler(Handler.Callback { msg ->
             if(msg.what == TRIGGER_AUTO_COMPLETE) {
@@ -62,6 +68,8 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
         userLIstATAdapter = UserLIstATAdapter(this, R.layout.item_preview, ArrayList())
         autoCompleteTextView_search.threshold = 2
         autoCompleteTextView_search.setAdapter(userLIstATAdapter)
+
+        setSupportActionBar(toolbar_userList)
     }
 
     private fun initListener() {

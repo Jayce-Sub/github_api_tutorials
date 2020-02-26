@@ -1,6 +1,7 @@
 package com.jaycesub.github_api_tutorials.view.user
 
 import android.os.Bundle
+import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.bumptech.glide.Glide
@@ -20,10 +21,20 @@ class UserActivity : AppCompatActivity(), UserContract.View {
         presenter = UserPresenter(this)
 
         initIntentData()
+        initView()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_user, menu)
+        return true
     }
 
     private fun initIntentData() {
         presenter.userName = intent.getStringExtra(INTENT_LOGIN)
+    }
+
+    private fun initView() {
+        setSupportActionBar(toolbar_user)
     }
 
     override fun onResume() {
