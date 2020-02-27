@@ -70,6 +70,7 @@ class UserListActivity : AppCompatActivity(), UserListContract.View {
         autoCompleteTextView_search.setAdapter(userLIstATAdapter)
 
         setSupportActionBar(toolbar_userList)
+        supportActionBar?.setTitle(R.string.app_name)
     }
 
     private fun initListener() {
